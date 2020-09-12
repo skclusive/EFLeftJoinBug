@@ -29,19 +29,14 @@ namespace EFLeftJoinBug
                             select new Blog
                             {
                                 Url = blog.Url,
-                                Post = new Post
-                                {
-                                    PostId = xpost.PostId,
-                                    BlogId = xpost.BlogId,
-                                    Content = xpost.Content
-                                }
+                                Post = xpost
                             };
 
                 foreach (var b in query)
                 {
                     Console.WriteLine(b.Url);
 
-                    Console.WriteLine($"{b.Post.PostId}:{b.Post.Content}:{b.Post.BlogId}");
+                    Console.WriteLine($"{b.Post?.PostId}:{b.Post?.Content}:{b.Post?.BlogId}");
                 }
             }
         }
